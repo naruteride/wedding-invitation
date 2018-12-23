@@ -10,11 +10,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+    <!-- Naver Map API -->
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&callback=CALLBACK_FUNCTION"></script>
+
     <style>
+        @font-face { font-family: "a엄마의편지B"; src: url("fonts/a엄마의편지B.ttf") format('truetype'); }
+        @font-face { font-family: "a엄마의편지M"; src: url("fonts/a엄마의편지M.ttf") format('truetype'); }
+        @font-face { font-family: "a엄마의편지L"; src: url("fonts/a엄마의편지L.ttf") format('truetype'); }
         html, body {
+            width: 100vw;
             color: #863C00;
             text-align: center;
-            /* font-family:  */
+            font-family: 'a엄마의편지B';
+            overflow-x: hidden;
         }
         #main-img {
             width: 100vw;
@@ -29,13 +37,14 @@
         #datetime {
             margin-top: 20px;
             font-style: italic;
+            font-family: "a엄마의편지L";
         }
         #spring-decoration {
             width: 100vw;
             margin: 60px 0 50px
         }
         #invitation {
-            margin-bottom: 150px;
+            margin-bottom: 110px;
             padding-bottom: 40px;
             background-image: url("images/heart.png");
             background-position: 85% bottom;
@@ -46,17 +55,63 @@
             margin-bottom: 80px;
         }
         #invitation-contents {
-            line-height: 2.4rem;
+            line-height: 2.5rem;
         }
         #wedding-photos {
-
+            /* margin-bottom: 10px; */
         }
         #flower-decoration {
             height: 5rem;
+            font-size: 2rem;
+            line-height: 4.4rem;
+            font-style: italic;
             background-image: url("images/flower-decoration.png");
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
+        }
+        .carousel {
+            top: -90px;
+            overflow: unset;
+        }
+        .carousel .carousel-item {
+            position: absolute;
+            top: -25px;
+            width: 300px;
+            height: 300px;
+            height: unset;
+        }
+        .mtb-50 {
+            margin: 44px 0;
+        }
+
+
+        #directions {
+            margin-bottom: 60px;
+            font-size: 0.8rem
+        }
+        #map-text {
+            margin-bottom: 80px;
+            font-family: "a엄마의편지M";
+        }
+        #map-img {
+            width: 90%;
+            margin: auto;
+            margin-bottom: 60px;
+        }
+        #map {
+            width: 90%;
+            height: 200px;
+            margin: auto;
+        }
+        #wedding-place {
+            margin-bottom: 40px;
+            line-height: 110%;
+        }
+        #chartered-bus {
+            line-height: 110%;
+        }
+        #chartered-bus > span {
         }
     </style>
 
@@ -68,7 +123,8 @@
             var elems = document.querySelectorAll('.carousel');
             var instances = M.Carousel.init(
                 elems, {
-                    dist: -50,
+                    // dist: -50,
+                    numVisible: 12,
                 }
             )
         })
@@ -81,7 +137,9 @@
         <h5 id="two-names">김유경 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 강태성</h5>
         <h6 id="datetime">2019.1.20 PM 02.30</h6>
     </div>
+
     <img id="spring-decoration" src="images/spring-decoration.png" alt="Spring picture of sketchbook">
+
     <div id="invitation">
         <h5 id="invitation-title">어느 겨울날, 결혼합니다</h5>
         <h6 id="invitation-contents">
@@ -98,10 +156,52 @@
             꼭 모시고 싶습니다<br>
         </h6>
     </div>
+
     <div id="wedding-photos">
-        <h5 id="flower-decoration">
+        <h6 id="flower-decoration">
             Wedding image
         </h5>
+        <div class="carousel">
+            <a class="carousel-item mtb-50" href="#one!"><img src="images/photo/wedding-photo1.jpg"></a>
+            <a class="carousel-item mtb-50" href="#two!"><img src="images/photo/wedding-photo2.jpg"></a>
+            <a class="carousel-item" href="#three!"><img src="images/photo/wedding-photo3.jpg"></a>
+            <a class="carousel-item" href="#four!"><img src="images/photo/wedding-photo4.jpg"></a>
+            <a class="carousel-item mtb-50" href="#five!"><img src="images/photo/wedding-photo5.jpg"></a>
+            <a class="carousel-item" href="#one!"><img src="images/photo/wedding-photo6.jpg"></a>
+            <a class="carousel-item" href="#two!"><img src="images/photo/wedding-photo7.jpg"></a>
+            <a class="carousel-item" href="#three!"><img src="images/photo/wedding-photo8.jpg"></a>
+            <a class="carousel-item mtb-50" href="#four!"><img src="images/photo/wedding-photo9.jpg"></a>
+            <a class="carousel-item" href="#five!"><img src="images/photo/wedding-photo10.jpg"></a>
+            <a class="carousel-item mtb-50" href="#one!"><img src="images/photo/wedding-photo11.jpg"></a>
+            <a class="carousel-item mtb-50" href="#one!"><img src="images/photo/wedding-photo12.jpg"></a>
+        </div>
     </div>
+
+    <div id="directions">
+        <h4 id="map-text">Map</h4>
+        <img id="map-img" src="images/map.png">
+        <div id="map"></div>
+        <p id="wedding-place">
+            서울웨딩타워 2층<br>
+            서울특별시 송파구 양재대로 932 가락몰 타워 2F
+        </p>
+
+        <p id="chartered-bus">
+            *전세버스 안내*<br><br>
+            <span>
+                사상터미널(7시) -> 창원 휴먼시아 104동 앞(8시) -> 영산톨게이트 앞(8시30분)<br>
+                -> 대구 홈플러스 성서점 앞(9시)
+            </span>
+        </p>
+    </div>
+
+    <script>
+        var mapOptions = {
+            center: new naver.maps.LatLng(37.3595704, 127.105399),
+            zoom: 10
+        };
+        
+        var map = new naver.maps.Map('map', mapOptions);
+    </script>
 </body>
 </html>
