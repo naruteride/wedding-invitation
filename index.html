@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- Daum Map API -->                                                                                                                                      
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44098baf9cdc58f5225f60a38a3e0a08"></script>
+	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44098baf9cdc58f5225f60a38a3e0a08"></script> -->
 
     <style>
         @font-face { font-family: "a엄마의편지B"; src: url("fonts/a엄마의편지B.ttf") format('truetype'); }
@@ -21,7 +21,79 @@
             padding: 3vw;
             background-color: rgb(230, 230, 230);
             overflow-x: hidden;
+            padding-top: calc(3vw + 100vh);
+            transition: 1s;
         }
+
+        #wedding-invitation-cover {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            transition: 1s;
+        }
+
+        #envelope-lid {
+            width: 0;
+            margin: 0 auto;
+            border-right: 150px solid #00000000;
+            border-bottom: 100px solid rgb(245, 245, 245);
+            border-left: 150px solid #00000000;
+        }
+
+        #envelope-background {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: whitesmoke;
+            /* box-shadow: 0 3px 10px 0 #00000038; */
+            margin: 0 auto;
+        }
+
+        #letter {
+            animation: rocking 3s infinite;
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            width: 280px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+            color: black;
+            background-color: beige;
+        }
+
+        #envelope-wing-left {
+            position: absolute;
+            left: 0;
+            width: 0;
+            z-index: 2;
+            border-top: 100px solid #00000000;
+            border-bottom: 100px solid #00000000;
+            border-left: 120px solid rgb(250, 250, 250);
+        }
+        #envelope-wing-right {
+            position: absolute;
+            right: 0;
+            width: 0;
+            z-index: 2;
+            border-top: 100px solid #00000000;
+            border-right: 120px solid rgb(250, 250, 250);
+            border-bottom: 100px solid #00000000;
+        }
+        #envelope-cover {
+            position: absolute;
+            bottom: 0;
+            z-index: 2;
+            width: 300px;
+            border-right: 35px solid #00000000;
+            border-bottom: 120px solid rgb(252, 252, 252);
+            border-left: 35px solid #00000000;
+        }
+
         body {
             width: 94vw;
             margin: auto;
@@ -35,14 +107,14 @@
         #main-img {
             width: 100%;
         }
-        #two-names {
-            line-height: 130%;
+        .two-names {
+            line-height: 150%;
             background-image: url("images/cloudy-heart.png");
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
         }
-        #datetime {
+        .datetime {
             margin-top: 20px;
             font-style: italic;
             font-family: "a엄마의편지L";
@@ -123,42 +195,196 @@
         }
         #chartered-bus > span {
         }
+
+        .display-none {
+            height: 0;
+        }
+        .no-shadow {
+            box-shadow: 0 0 0 0 #00000000 !important;
+        }
+        .goto-top {
+            padding-top: 3vw !important;
+        }
+        .goto-top2 {
+            transform: translateY(-250%) !important;
+        }
+        .rocking {
+            height: 300px;
+            animation: rocking 0.5s;
+        }
+        @keyframes rocking {
+            0% {
+                height: 300px;
+            }
+            30% {
+                height: 290px ;
+            }
+            50% {
+                height: 290px;
+            }
+            80% {
+                height: 300px;
+            }
+            100% {
+                height: 300px;
+            }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: stretch;
+            width: 100vw;
+            height: 56px;
+            background-color: #ffffff;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+        }
+        .footer-item {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .footer-item-selected {
+            cursor: default;
+        }
+        #home-button {
+            background-image: url("./images/home-light.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 33%;
+            text-decoration: 0.2s;
+        }
+        #text-button {
+            background-image: url("./images/envelope-open-text-light.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 33%;
+            text-decoration: 0.2s;
+        }
+        #photos-button {
+            background-image: url("./images/images-light.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 33%;
+            text-decoration: 0.2s;
+        }
+        #map-button {
+            background-image: url("./images/map-marked-alt-light.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 33%;
+            text-decoration: 0.2s;
+        }
+        .home-button {
+            background-image: url("./images/home-light2.svg") !important;
+            border-top: 3px solid #518CFF;
+            border-bottom: 3px solid #00000000;
+        }
+        .text-button {
+            background-image: url("./images/envelope-open-text-light2.svg") !important;
+            border-top: 3px solid #518CFF;
+            border-bottom: 3px solid #00000000;
+        }
+        .photos-button {
+            background-image: url("./images/images-light2.svg") !important;
+            border-top: 3px solid #518CFF;
+            border-bottom: 3px solid #00000000;
+        }
+        .map-button {
+            background-image: url("./images/map-marked-alt-light2.svg") !important;
+            border-top: 3px solid #518CFF;
+            border-bottom: 3px solid #00000000;
+        }
     </style>
 
     <script>
         onload = function () {
-            var container = document.getElementById('map');
-            var options = {
-                center: new daum.maps.LatLng(37.495308, 127.115538),
-                level: 3
-            };
+            // var container = document.getElementById('map');
+            // var options = {
+            //     center: new daum.maps.LatLng(37.495308, 127.115538),
+            //     level: 3
+            // };
 
-            var map = new daum.maps.Map(container, options);
+            // var map = new daum.maps.Map(container, options);
 
-            // map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);
+            // // map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);
 
-            // 마커가 표시될 위치입니다 
-            var markerPosition  = new daum.maps.LatLng(37.495308, 127.115538); 
+            // // 마커가 표시될 위치입니다 
+            // var markerPosition  = new daum.maps.LatLng(37.495308, 127.115538); 
 
-            // 마커를 생성합니다
-            var marker = new daum.maps.Marker({
-                position: markerPosition
-            });
+            // // 마커를 생성합니다
+            // var marker = new daum.maps.Marker({
+            //     position: markerPosition
+            // });
 
-            // 마커가 지도 위에 표시되도록 설정합니다
-            marker.setMap(map);
+            // // 마커가 지도 위에 표시되도록 설정합니다
+            // marker.setMap(map);
 
-            var iwContent = '<div style="padding:5px;">서울웨딩타워 2층<br><a href="http://map.daum.net/link/map/서울웨딩타워,37.495308, 127.115538" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-            iwPosition = new daum.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+            // var iwContent = '<div style="padding:5px;">서울웨딩타워 2층<br><a href="http://map.daum.net/link/map/서울웨딩타워,37.495308, 127.115538" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            // iwPosition = new daum.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
 
-            // 인포윈도우를 생성합니다
-            var infowindow = new daum.maps.InfoWindow({
-                position : iwPosition, 
-                content : iwContent 
-            });
+            // // 인포윈도우를 생성합니다
+            // var infowindow = new daum.maps.InfoWindow({
+            //     position : iwPosition, 
+            //     content : iwContent 
+            // });
             
-            // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-            infowindow.open(map, marker); 
+            // // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+            // infowindow.open(map, marker); 
+
+
+
+            let invitationCover = document.querySelector("#wedding-invitation-cover");
+            let jshtml = document.querySelector("html"); 
+            let body = document.querySelector("body");
+            let main = document.querySelector("main");
+            jshtml.addEventListener("click", function () {
+                body.classList.remove("no-shadow");
+                main.classList.remove("display-none");
+                jshtml.classList.add("goto-top");
+                invitationCover.classList.add("goto-top2");
+            })
+
+            let homeButton = document.querySelector("#home-button");
+            let textButton = document.querySelector("#text-button");
+            let photosButton = document.querySelector("#photos-button");
+            let mapButton = document.querySelector("#map-button");
+
+            homeButton.addEventListener("click", function () {
+                homeButton.classList.add("home-button");
+                textButton.classList.remove("text-button");
+                photosButton.classList.remove("photos-button");
+                mapButton.classList.remove("map-button");
+                
+                jshtml.scrollTop = 0;
+            })
+            textButton.addEventListener("click", function () {
+                homeButton.classList.remove("home-button");
+                textButton.classList.add("text-button");
+                photosButton.classList.remove("photos-button");
+                mapButton.classList.remove("map-button");
+                
+                jshtml.scrollTop = document.querySelector("#home").scrollHeight;
+            })
+            photosButton.addEventListener("click", function () {
+                homeButton.classList.remove("home-button");
+                textButton.classList.remove("text-button");
+                photosButton.classList.add("photos-button");
+                mapButton.classList.remove("map-button");
+                
+                jshtml.scrollTop = document.querySelector("#home").scrollHeight + document.querySelector("#invitation").scrollHeight + 50;
+            })
+            mapButton.addEventListener("click", function () {
+                homeButton.classList.remove("home-button");
+                textButton.classList.remove("text-button");
+                photosButton.classList.remove("photos-button");
+                mapButton.classList.add("map-button");
+                
+                jshtml.scrollTop = document.querySelector("#home").scrollHeight + document.querySelector("#invitation").scrollHeight + document.querySelector("#wedding-photos").scrollHeight + 100;
+            })
         }
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.carousel');
@@ -172,67 +398,87 @@
     </script>
 
 </head>
-<body>
-    <img id="main-img" src="images/main-img.png" alt="Illustration of two men and women in a wedding dress">
-    <div id="information-top">
-        <h5 id="two-names">김유경 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 강태성</h5>
-        <h6 id="datetime">2019.1.20 PM 02.30</h6>
-    </div>
+<body class="no-shadow">
 
-    <img id="spring-decoration" src="images/spring-decoration.png" alt="Spring picture of sketchbook">
-
-    <div id="invitation">
-        <h5 id="invitation-title">어느 겨울날, 결혼합니다</h5>
-        <h6 id="invitation-contents">
-            결혼식에 오시면<br>
-            오랫동안 못 봤던 친구를 만날 수 있고<br>
-            처녀 총각 눈 맞을 수도 있고<br>
-            소문보다 훨씬 예쁜 신부와<br>
-            사위 삼고 싶은 신랑도 만날 수 있고<br>
-            신랑신부 부모님의<br>
-            눈물과 웃음을 볼 수 있고<br>
-            박수치며 등 두드리며<br>
-            두 사람의 새 출발을<br>
-            축복해 줄 수도 있습니다<br>
-            꼭 모시고 싶습니다<br>
-        </h6>
-    </div>
-
-    <div id="wedding-photos">
-        <h6 id="flower-decoration">
-            Wedding image
-        </h6>
-        <div class="carousel">
-            <a class="carousel-item mtb-50" href="#one!" style="z-index: -1; opacity: 0.833333; visibility: visible; transform: translateX(37.5px) translateY(97.5px) translateX(-300px) translateZ(-200px);"><img src="images/photo/wedding-photo1.jpg"></a>
-            <a class="carousel-item mtb-50 active" href="#two!" style="transform: translateX(37.5px) translateY(97.5px) translateX(0px) translateX(0px) translateZ(0px); z-index: 0; opacity: 1; visibility: visible;"><img src="images/photo/wedding-photo2.jpg"></a>
-            <a class="carousel-item" href="#three!" style="transform: translateX(37.5px) translateY(97.5px) translateX(300px) translateZ(-200px); z-index: -1; opacity: 0.833333; visibility: visible;"><img src="images/photo/wedding-photo3.jpg"></a>
-            <a class="carousel-item" href="#four!" style="transform: translateX(37.5px) translateY(97.5px) translateX(600px) translateZ(-400px); z-index: -2; opacity: 0.666667; visibility: visible;"><img src="images/photo/wedding-photo4.jpg"></a>
-            <a class="carousel-item mtb-50" href="#five!" style="transform: translateX(37.5px) translateY(97.5px) translateX(900px) translateZ(-600px); z-index: -3; opacity: 0.5; visibility: visible;"><img src="images/photo/wedding-photo5.jpg"></a>
-            <a class="carousel-item" href="#one!" style="transform: translateX(37.5px) translateY(97.5px) translateX(1200px) translateZ(-800px); z-index: -4; opacity: 0.333333; visibility: visible;"><img src="images/photo/wedding-photo6.jpg"></a>
-            <a class="carousel-item" href="#two!" style="transform: translateX(37.5px) translateY(97.5px) translateX(1500px) translateZ(-1000px); z-index: -5; opacity: 0.166667; visibility: visible;"><img src="images/photo/wedding-photo7.jpg"></a>
-            <a class="carousel-item" href="#three!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-1800px) translateZ(-1200px); z-index: -6; opacity: 0; visibility: visible;"><img src="images/photo/wedding-photo8.jpg"></a>
-            <a class="carousel-item mtb-50" href="#four!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-1500px) translateZ(-1000px); z-index: -5; opacity: 0.166667; visibility: visible;"><img src="images/photo/wedding-photo9.jpg"></a>
-            <a class="carousel-item" href="#five!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-1200px) translateZ(-800px); z-index: -4; opacity: 0.333333; visibility: visible;"><img src="images/photo/wedding-photo10.jpg"></a>
-            <a class="carousel-item mtb-50" href="#one!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-900px) translateZ(-600px); z-index: -3; opacity: 0.5; visibility: visible;"><img src="images/photo/wedding-photo11.jpg"></a>
-            <a class="carousel-item mtb-50" href="#one!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-600px) translateZ(-400px); z-index: -2; opacity: 0.666667; visibility: visible;"><img src="images/photo/wedding-photo12.jpg"></a>
+    <div id="wedding-invitation-cover">
+        <div id="envelope-lid"></div>
+        <div id="envelope-background">
+            <div id="letter">
+                <h5 class="two-names">김유경 &nbsp; &nbsp; &nbsp; &nbsp; 강태성</h5>
+                <h6 class="datetime">
+                    결혼식에<br>
+                    당신을<br>
+                    초대합니다!
+                </h6>
+            </div>
+            <div id="envelope-wing-left"></div>
+            <div id="envelope-wing-right"></div>
+            <div id="envelope-cover">터치하세요</div>
         </div>
     </div>
 
-    <div id="directions">
-        <h4 id="map-text">Map</h4>
-        <img id="map-img" src="images/map.png">
-        <div id="map"></div>
-        <p id="wedding-place">
-            서울웨딩타워 2층<br>
-            서울특별시 송파구 양재대로 932 가락몰 타워 2F
-        </p>
+    <main class="display-none">
+        <div id="home">
+            <img id="main-img" src="images/main-img.png" alt="Illustration of two men and women in a wedding dress">
+            <div id="information-top">
+                <h5 class="two-names">김유경 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 강태성</h5>
+                <h6 class="datetime">2019.1.20 PM 02.30</h6>
+            </div>
+            <img id="spring-decoration" src="images/spring-decoration.png" alt="Spring picture of sketchbook">
+        </div>
 
-        <p id="chartered-bus">
-            *전세버스 안내*<br><br>
-            <span>
-                사상터미널(7시) -&gt; 창원 휴먼시아 104동 앞(8시) -&gt; 영산톨게이트 앞(8시30분)<br>
-                -&gt; 대구 홈플러스 성서점 앞(9시)
-            </span>
-        </p>
-    </div>
-</body></html>
+        <div id="invitation">
+            <h5 id="invitation-title">어느 겨울날, 결혼합니다</h5>
+            <h6 id="invitation-contents">
+                결혼식에 오시면<br>
+                오랫동안 못 봤던 친구를 만날 수 있고<br>
+                처녀 총각 눈 맞을 수도 있고<br>
+                소문보다 훨씬 예쁜 신부와<br>
+                사위 삼고 싶은 신랑도 만날 수 있고<br>
+                신랑신부 부모님의<br>
+                눈물과 웃음을 볼 수 있고<br>
+                박수치며 등 두드리며<br>
+                두 사람의 새 출발을<br>
+                축복해 줄 수도 있습니다<br>
+                꼭 모시고 싶습니다<br>
+            </h6>
+        </div>
+
+        <div id="wedding-photos">
+            <h6 id="flower-decoration">
+                Wedding image
+            </h6>
+            <div class="carousel">
+                <a class="carousel-item mtb-50" href="#one!" style="z-index: -1; opacity: 0.833333; visibility: visible; transform: translateX(37.5px) translateY(97.5px) translateX(-300px) translateZ(-200px);"><img src="images/photo/wedding-photo1.jpg"></a>
+                <a class="carousel-item mtb-50 active" href="#two!" style="transform: translateX(37.5px) translateY(97.5px) translateX(0px) translateX(0px) translateZ(0px); z-index: 0; opacity: 1; visibility: visible;"><img src="images/photo/wedding-photo2.jpg"></a>
+                <a class="carousel-item" href="#three!" style="transform: translateX(37.5px) translateY(97.5px) translateX(300px) translateZ(-200px); z-index: -1; opacity: 0.833333; visibility: visible;"><img src="images/photo/wedding-photo3.jpg"></a>
+                <a class="carousel-item" href="#four!" style="transform: translateX(37.5px) translateY(97.5px) translateX(600px) translateZ(-400px); z-index: -2; opacity: 0.666667; visibility: visible;"><img src="images/photo/wedding-photo4.jpg"></a>
+                <a class="carousel-item mtb-50" href="#five!" style="transform: translateX(37.5px) translateY(97.5px) translateX(900px) translateZ(-600px); z-index: -3; opacity: 0.5; visibility: visible;"><img src="images/photo/wedding-photo5.jpg"></a>
+                <a class="carousel-item" href="#one!" style="transform: translateX(37.5px) translateY(97.5px) translateX(1200px) translateZ(-800px); z-index: -4; opacity: 0.333333; visibility: visible;"><img src="images/photo/wedding-photo6.jpg"></a>
+                <a class="carousel-item" href="#two!" style="transform: translateX(37.5px) translateY(97.5px) translateX(1500px) translateZ(-1000px); z-index: -5; opacity: 0.166667; visibility: visible;"><img src="images/photo/wedding-photo7.jpg"></a>
+                <a class="carousel-item" href="#three!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-1800px) translateZ(-1200px); z-index: -6; opacity: 0; visibility: visible;"><img src="images/photo/wedding-photo8.jpg"></a>
+                <a class="carousel-item mtb-50" href="#four!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-1500px) translateZ(-1000px); z-index: -5; opacity: 0.166667; visibility: visible;"><img src="images/photo/wedding-photo9.jpg"></a>
+                <a class="carousel-item" href="#five!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-1200px) translateZ(-800px); z-index: -4; opacity: 0.333333; visibility: visible;"><img src="images/photo/wedding-photo10.jpg"></a>
+                <a class="carousel-item mtb-50" href="#one!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-900px) translateZ(-600px); z-index: -3; opacity: 0.5; visibility: visible;"><img src="images/photo/wedding-photo11.jpg"></a>
+                <a class="carousel-item mtb-50" href="#one!" style="transform: translateX(37.5px) translateY(97.5px) translateX(-600px) translateZ(-400px); z-index: -2; opacity: 0.666667; visibility: visible;"><img src="images/photo/wedding-photo12.jpg"></a>
+            </div>
+        </div>
+
+        <div id="directions">
+            <h4 id="map-text">Map</h4>
+            <img id="map-img" src="images/map.png">
+            <div id="map"></div>
+            <p id="wedding-place">
+                서울웨딩타워 2층<br>
+                서울특별시 송파구 양재대로 932 가락몰 타워 2F
+            </p>
+        </div>
+    </main>
+    <footer>
+        <div id="home-button" class="footer-item"></div>
+        <div id="text-button" class="footer-item"></div>
+        <div id="photos-button" class="footer-item"></div>
+        <div id="map-button" class="footer-item"></div>
+    </footer>
+</body>
+</html>
