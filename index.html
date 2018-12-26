@@ -349,16 +349,16 @@
             background-size: 20px;
             font-size: 1.5rem;
             color: #FF1F00;
-            transition: 0.5s;
+            transition: 0.4s;
         }
         .likes2 {
-            width: 150px !important;
-            background: #FF1F00dd !important;
-            background-image: url("./images/heart-light.svg") !important;
+            /* width: 150px !important; */
+            /* background: #FF1F00dd !important; */
+            background-image: url("./images/heart-solid.svg") !important;
             background-position: 10px center !important;
             background-repeat: no-repeat !important;
             background-size: 20px !important;
-            color: #ffffff !important;
+            /* color: #ffffff !important; */
         }
     </style>
 
@@ -487,8 +487,9 @@
                     
                     likes.classList.add("likes2");
                     setTimeout(e => {
-                        likes.classList.remove("likes2");
-                    }, 2000)
+                        // likes.classList.remove("likes2");
+                        likeButton.classList.remove("like-button2");
+                    }, 500)
                 }
             })
         }
