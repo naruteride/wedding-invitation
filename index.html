@@ -461,37 +461,37 @@
 
 
             
-            let currentURL = location.protocol + "//" + location.host;
-            let likes = document.querySelector("#likes");
+            // let currentURL = location.protocol + "//" + location.host;
+            // let likes = document.querySelector("#likes");
 
-            likeButton.addEventListener("click", function () {
-                if (!(likeButton.classList.contains("like-button2"))) {
-                    likeButton.classList.add("like-button2");
+            // likeButton.addEventListener("click", function () {
+            //     if (!(likeButton.classList.contains("like-button2"))) {
+            //         likeButton.classList.add("like-button2");
 
-                    path = fetch(currentURL + "/", {
-                        method: "get",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            "like": ture
-                        })
-                    })
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (myJSON) {
-                        likes.textContent = myJSON.totalLikes;
-                        // likes.textContent += "명이 축복했습니다!";
-                    })
+            //         path = fetch(currentURL + "/", {
+            //             method: "get",
+            //             headers: {
+            //                 "Content-Type": "application/json",
+            //             },
+            //             body: JSON.stringify({
+            //                 "like": ture
+            //             })
+            //         })
+            //         .then(function (response) {
+            //             return response.json();
+            //         })
+            //         .then(function (myJSON) {
+            //             likes.textContent = myJSON.totalLikes;
+            //             // likes.textContent += "명이 축복했습니다!";
+            //         })
                     
-                    likes.classList.add("likes2");
-                    setTimeout(e => {
-                        // likes.classList.remove("likes2");
-                        likeButton.classList.remove("like-button2");
-                    }, 500)
-                }
-            })
+            //         likes.classList.add("likes2");
+            //         setTimeout(e => {
+            //             // likes.classList.remove("likes2");
+            //             likeButton.classList.remove("like-button2");
+            //         }, 500)
+            //     }
+            // })
         }
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.carousel');
@@ -583,8 +583,8 @@
         </div>
     </main>
 
-    <div id="like-button" class="waves-effect waves-red opecity-0 display-none2"></div>
-    <div id="likes">350</div>
+    <!-- <div id="like-button" class="waves-effect waves-red opecity-0 display-none2"></div>
+    <div id="likes">350</div> -->
 
     <footer class="opecity-0">
         <div id="home-button" class="footer-item home-button"></div>
